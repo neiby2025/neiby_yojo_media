@@ -8,7 +8,7 @@ import { remark } from "remark";
 import html from "remark-html";
 
 interface ArticlePageProps {
-  params: { type: string; slug: string };
+  params: Promise<{ type: string; slug: string }>;
 }
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { type, slug } = await params;

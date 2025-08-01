@@ -8,7 +8,7 @@ import { Calendar } from "lucide-react";
 export default async function LifestyleArticlePage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
   const filePath = path.join(

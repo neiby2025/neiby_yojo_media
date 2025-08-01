@@ -10,7 +10,7 @@ import html from "remark-html";
 export default async function NutritionArticlePage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
   const filePath = path.join(

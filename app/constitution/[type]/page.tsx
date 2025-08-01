@@ -50,7 +50,7 @@ const typeInfo: Record<
 export default async function ConstitutionTypePage({
   params,
 }: {
-  params: { type: string };
+  params: Promise<{ type: string }>;
 }) {
   const { type } = await params;
   const dirPath = path.join(process.cwd(), "content", "constitution", type);

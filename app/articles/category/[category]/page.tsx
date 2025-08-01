@@ -9,7 +9,7 @@ import { Calendar } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface CategoryPageProps {
-  params: { category: string };
+  params: Promise<{ category: string }>;
 }
 
 function guessTypeFromFrontmatterOrSlug(data: any, slug: string): string {

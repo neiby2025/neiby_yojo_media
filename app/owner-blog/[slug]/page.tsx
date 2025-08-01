@@ -9,7 +9,7 @@ import html from "remark-html";
 export default async function OwnerBlogPost({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<any> {
   const { slug } = await params;
   const dirPath = path.join(process.cwd(), "content", "owner-blog");

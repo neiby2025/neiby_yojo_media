@@ -8,7 +8,7 @@ import { remark } from "remark";
 import html from "remark-html";
 
 interface ArticlePageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 // content配下を再帰的に探索してslug一致のmdファイルを探す

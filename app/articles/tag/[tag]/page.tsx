@@ -84,7 +84,7 @@ function getArticlesByTag(tag: string) {
 }
 
 interface TagPageProps {
-  params: { tag: string };
+  params: Promise<{ tag: string }>;
 }
 
 export default async function TagPage({ params }: TagPageProps) {
