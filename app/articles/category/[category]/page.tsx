@@ -7,9 +7,12 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Calendar } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { paginateItems } from "@/lib/pagination";
+import { ArticlePagination } from "@/components/ArticlePagination";
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>;
+  searchParams: Promise<{ page?: string }>;
 }
 
 function guessTypeFromFrontmatterOrSlug(data: any, slug: string): string {
@@ -37,8 +40,13 @@ function guessTypeFromFrontmatterOrSlug(data: any, slug: string): string {
   return "other";
 }
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
+export default async function CategoryPage({
+  params,
+  searchParams,
+}: CategoryPageProps) {
   const { category } = await params;
+  const { page } = await searchParams;
+  const currentPage = parseInt(page || "1", 10);
   const categoryInfo = categories.find((c) => c.slug === category);
 
   // content配下の全mdファイルを再帰的に取得
@@ -81,6 +89,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     .filter((article) => article.category === categoryInfo?.name)
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 
+  const paginationResult = paginateItems(articles, currentPage, 12);
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-50 via-indigo-50 to-slate-100 py-20 px-4">
       <div className="container mx-auto max-w-6xl">
@@ -91,7 +101,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           {categoryInfo?.description}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {articles.map((article) => (
+          {paginationResult.items.map((article) => (
             <Card
               key={article.slug}
               className="group overflow-hidden hover:shadow-md transition-all duration-300 border border-gray-200 bg-white rounded-lg"
@@ -126,15 +136,15 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                         </Badge>
                       ))}
                   </div>
-                  <CardTitle className="text-base leading-tight text-gray-900 group-hover:text-gray-700 transition-colors font-medium">
+                  <CardTitle className="text-base md:text-lg leading-tight text-gray-900 group-hover:text-gray-700 transition-colors font-medium">
                     {article.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <p className="text-gray-600 text-xs mb-3 leading-relaxed">
+                  <p className="text-gray-600 text-xs md:text-base mb-3 leading-relaxed">
                     {article.excerpt}
                   </p>
-                  <div className="flex items-center text-xs text-gray-500">
+                  <div className="flex items-center text-xs md:text-sm text-gray-500">
                     <Calendar className="h-4 w-4 mr-2" />
                     {article.date}
                   </div>
@@ -143,6 +153,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </Card>
           ))}
         </div>
+
+        <ArticlePagination
+          currentPage={paginationResult.currentPage}
+          totalPages={paginationResult.totalPages}
+          basePath={`/articles/category/${category}`}
+        />
+
         <div className="mt-12 text-center">
           <Link href="/#categories" className="text-blue-600 hover:underline">
             カテゴリ一覧に戻る

@@ -4,6 +4,12 @@ import matter from "gray-matter";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar } from "lucide-react";
+import { paginateItems } from "@/lib/pagination";
+import { ArticlePagination } from "@/components/ArticlePagination";
+
+interface ConstitutionPageProps {
+  searchParams: Promise<{ page?: string }>;
+}
 
 interface ArticleMeta {
   slug: string;
@@ -47,8 +53,14 @@ function getAllConstitutionArticles(): ArticleMeta[] {
   return articles.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export default function ConstitutionAllArticlesPage() {
+export default async function ConstitutionAllArticlesPage({
+  searchParams,
+}: ConstitutionPageProps) {
+  const { page } = await searchParams;
+  const currentPage = parseInt(page || "1", 10);
+
   const articles = getAllConstitutionArticles();
+  const paginationResult = paginateItems(articles, currentPage, 12);
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-indigo-50 to-slate-100">
       <section className="py-16 px-4">
@@ -62,12 +74,12 @@ export default function ConstitutionAllArticlesPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.length === 0 && (
+            {paginationResult.items.length === 0 && (
               <div className="col-span-full text-center text-gray-500">
                 記事がありません
               </div>
             )}
-            {articles.map((article) => (
+            {paginationResult.items.map((article) => (
               <Link
                 key={article.type + ":" + article.slug}
                 href={`/constitution/${article.type}/${article.slug}`}
@@ -122,6 +134,12 @@ export default function ConstitutionAllArticlesPage() {
               </Link>
             ))}
           </div>
+
+          <ArticlePagination
+            currentPage={paginationResult.currentPage}
+            totalPages={paginationResult.totalPages}
+            basePath="/constitution"
+          />
         </div>
       </section>
     </div>

@@ -4,6 +4,13 @@ import matter from "gray-matter";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar } from "lucide-react";
+import { paginateItems } from "@/lib/pagination";
+import { ArticlePagination } from "@/components/ArticlePagination";
+
+interface ConstitutionTypePageProps {
+  params: Promise<{ type: string }>;
+  searchParams: Promise<{ page?: string }>;
+}
 
 interface ArticleMeta {
   slug: string;
@@ -49,10 +56,11 @@ const typeInfo: Record<
 
 export default async function ConstitutionTypePage({
   params,
-}: {
-  params: Promise<{ type: string }>;
-}) {
+  searchParams,
+}: ConstitutionTypePageProps) {
   const { type } = await params;
+  const { page } = await searchParams;
+  const currentPage = parseInt(page || "1", 10);
   const dirPath = path.join(process.cwd(), "content", "constitution", type);
   let articles: ArticleMeta[] = [];
   let typeName = "";
@@ -89,6 +97,8 @@ export default async function ConstitutionTypePage({
     articles = [];
   }
 
+  const paginationResult = paginateItems(articles, currentPage, 12);
+
   if (!typeName) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 via-indigo-50 to-slate-100">
@@ -117,12 +127,12 @@ export default async function ConstitutionTypePage({
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.length === 0 && (
+            {paginationResult.totalItems === 0 && (
               <div className="col-span-full text-center text-gray-500">
                 記事がありません
               </div>
             )}
-            {articles.map((article) => (
+            {paginationResult.items.map((article) => (
               <Link
                 key={article.slug}
                 href={`/constitution/${type}/${article.slug}`}
@@ -174,6 +184,12 @@ export default async function ConstitutionTypePage({
               </Link>
             ))}
           </div>
+
+          <ArticlePagination
+            currentPage={paginationResult.currentPage}
+            totalPages={paginationResult.totalPages}
+            basePath={`/constitution/${type}`}
+          />
         </div>
       </section>
     </div>

@@ -6,6 +6,12 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Calendar } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { paginateItems } from "@/lib/pagination";
+import { ArticlePagination } from "@/components/ArticlePagination";
+
+interface ArticlesPageProps {
+  searchParams: Promise<{ page?: string }>;
+}
 
 // content配下すべてを再帰的に探索し全記事を取得
 function getAllArticles() {
@@ -56,8 +62,14 @@ function getAllArticles() {
   return articles.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export default function ArticlesPage() {
-  const articles = getAllArticles();
+export default async function ArticlesPage({
+  searchParams,
+}: ArticlesPageProps) {
+  const { page } = await searchParams;
+  const currentPage = parseInt(page || "1", 10);
+
+  const allArticles = getAllArticles();
+  const paginationResult = paginateItems(allArticles, currentPage, 12);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-50 via-indigo-50 to-slate-100 py-20 px-4">
@@ -66,7 +78,7 @@ export default function ArticlesPage() {
           記事一覧
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {articles.map((article) => {
+          {paginationResult.items.map((article) => {
             const match = article.relPath.match(/^(\w+)\//);
             const category = match ? match[1] : "";
             let href = "#";
@@ -112,15 +124,15 @@ export default function ArticlesPage() {
                         </Link>
                       ))}
                     </div>
-                    <CardTitle className="text-base leading-tight text-gray-900 group-hover:text-gray-700 transition-colors font-medium">
+                    <CardTitle className="text-base md:text-lg leading-tight text-gray-900 group-hover:text-gray-700 transition-colors font-medium">
                       {article.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <p className="text-gray-600 text-xs mb-3 leading-relaxed">
+                    <p className="text-gray-600 text-xs md:text-base mb-3 leading-relaxed">
                       {article.excerpt}
                     </p>
-                    <div className="flex items-center text-xs text-gray-500">
+                    <div className="flex items-center text-xs md:text-sm text-gray-500">
                       <Calendar className="h-4 w-4 mr-2" />
                       {article.date}
                     </div>
@@ -130,6 +142,13 @@ export default function ArticlesPage() {
             );
           })}
         </div>
+
+        <ArticlePagination
+          currentPage={paginationResult.currentPage}
+          totalPages={paginationResult.totalPages}
+          basePath="/articles"
+        />
+
         <div className="mt-12 text-center">
           <Link href="/" className="text-blue-600 hover:underline">
             トップページへ戻る
