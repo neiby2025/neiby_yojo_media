@@ -122,18 +122,10 @@ export default function HomePage() {
         <div className="container mx-auto text-center max-w-4xl">
           <div className="bg-white/80 backdrop-blur-sm rounded-lg p-12 md:p-16 shadow-sm border border-gray-100">
             <h1 className="text-xl md:text-lg font-light text-gray-900 mb-6 leading-tight tracking-tight">
-              毎日をがんばるあなたへ
-              <br />
-              <span className="font-medium text-gray-800">
-                “私にちょうどいい”ケアを見つけませんか？
-              </span>
+              “私にちょうどいい”ケアを、東洋医学で
             </h1>
             <p className="text-base md:text-s text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
-              東洋医学の体質診断で、あなたに合った養生法がわかります。
-              <br />
-              日々の選択肢を少し変えるだけで、本来の健やかさが自然と引き出されていきます。
-              <br />
-              一緒にその方法を学んでみませんか？
+              体質診断から始まる、私らしい養生習慣。
             </p>
 
             <Link href="/questionnaire">
