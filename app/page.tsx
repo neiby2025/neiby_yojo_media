@@ -118,9 +118,19 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-indigo-50 to-slate-100">
       {/* Hero Section */}
-      <section className="py-24 md:py-32 px-4">
-        <div className="container mx-auto text-center max-w-4xl">
-          <div className="bg-white/80 backdrop-blur-sm rounded-lg p-12 md:p-16 shadow-sm border border-gray-100">
+      <section
+        className="py-24 md:py-32 px-4 relative"
+        style={{
+          backgroundImage: "url('/bg/bg-7.jpg')",
+          backgroundSize: "400px auto",
+          backgroundRepeat: "repeat",
+          backgroundPosition: "0 0",
+        }}
+      >
+        {/* Background overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="container mx-auto text-center max-w-4xl relative z-10">
+          <div className="bg-white/90 backdrop-blur-sm rounded-lg p-12 md:p-16 shadow-lg border border-gray-100">
             <h1 className="text-xl md:text-lg font-light text-gray-900 mb-6 leading-tight tracking-tight">
               “私にちょうどいい”ケアを、東洋医学で
             </h1>

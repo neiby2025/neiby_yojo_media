@@ -7,7 +7,7 @@ tags: ["血虚", "美容", "スキンケア", "アンチエイジング", "中�
 author: "Neiby編集部"
 publishedAt: "2024-03-12"
 updatedAt: "2024-03-12"
-image: "/images/articles/blood-deficiency-beauty.jpg"
+image: "/images/constitution/blood-deficiency-beauty.jpg"
 readingTime: 6
 featured: false
 ---
