@@ -6,7 +6,7 @@ tags: ["朝活", "生活習慣", "健康法", "体質改善", "養生"]
 author: "東洋美人編集部"
 publishedAt: "2024-03-08"
 updatedAt: "2024-03-08"
-image: "/images/articles/morning-routine.jpg"
+image: "/images/lifestyle/morning-routine-health.jpg"
 readingTime: 8
 featured: true
 ---

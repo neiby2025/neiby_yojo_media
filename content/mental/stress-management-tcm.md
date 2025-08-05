@@ -7,12 +7,10 @@ tags:
 author: "東洋美人編集部"
 publishedAt: "2024-03-05"
 updatedAt: "2024-03-05"
-image: "/images/articles/stress-management.jpg"
+image: "/images/mental/stress-management-tcm.jpg"
 readingTime: 9
 featured: false
 ---
-
-# 東洋医学的ストレス解消法 - 心と体のバランスを整える
 
 現代社会では、仕事や人間関係、環境の変化など、様々なストレスに囲まれて生活しています。東洋医学では、ストレスは「気の滞り」として捉えられ、心と体の不調の根本原因とされています。今回は、東洋医学の知恵を活用したストレス解消法をご紹介します。
 

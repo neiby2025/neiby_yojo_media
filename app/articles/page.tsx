@@ -25,10 +25,15 @@ function getAllArticles() {
       const stat = fs.statSync(fullPath);
       if (stat.isDirectory()) {
         walk(fullPath);
-      } else if (entry.endsWith(".md")) {
+      } else if (entry.endsWith(".md") && entry !== "README.md") {
         const slug = entry.replace(/\.md$/, "");
         const fileContent = fs.readFileSync(fullPath, "utf-8");
         const { data, content } = matter(fileContent);
+
+        // フロントマターにtitleがない場合は記事として扱わない
+        if (!data.title) {
+          continue;
+        }
 
         // 記事のtypeやconstitutionはfrontmatterやパスから推測
         let type = "";
