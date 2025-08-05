@@ -20,7 +20,11 @@ export default function PrivacyPage() {
           <h2 className="text-lg font-semibold mt-6 mb-2">4. 免責事項</h2>
           <p>当サイトの利用により生じた損害について一切の責任を負いません。</p>
           <h2 className="text-lg font-semibold mt-6 mb-2">5. 改定</h2>
-          <p>本ポリシーは予告なく改定されることがあります。</p>
+          <p>本ポリシーは予告なく改定されることがあります当サイトでは、第三者配信の広告サービス（Amazonアソシエイト含む）を利用しています。
+このような広告配信事業者は、ユーザーの興味に応じた商品・サービスの広告を表示するため、当サイトや他サイトへのアクセスに関する情報『Cookie』を使用することがあります。
+
+Amazonのアソシエイトとして、当メディアは適格販売により収入を得ています。
+。</p>
         </div>
         <div className="text-center">
           <Link href="/" className="text-blue-600 hover:underline">

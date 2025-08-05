@@ -6,7 +6,7 @@ tags: ["瘀血", "冷え", "肩こり", "月経トラブル"]
 author: "Neiby編集部"
 publishedAt: "2025-07-15"
 updatedAt: "2025-07-15"
-image: "/images/articles/qi-deficiency-spring.jpg"
+image: "/images/constitution/blood-stasis.jpg"
 featured: true
 
 ---

@@ -7,7 +7,7 @@ tags: ["気滞", "ストレス", "自律神経", "気の巡り"]
 author: "Neiby編集部"
 publishedAt: "2025-07-31"
 updatedAt: "2025-07-31"
-image: "/images/articles/qi-stagnation.jpg"
+image: "/images/constitution/qi-stagnation.jpg"
 featured: false
 
 ---
