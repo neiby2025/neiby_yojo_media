@@ -77,7 +77,11 @@ export default function CookieSettingsPage() {
                     ? "bg-blue-600 hover:bg-blue-700"
                     : "bg-gray-600 hover:bg-gray-700"
                 } ${!isLoaded ? "opacity-50 cursor-not-allowed" : ""}`}
-                onClick={isLoaded ? toggleAnalytics : undefined}
+                onClick={() => {
+                  if (isLoaded) {
+                    toggleAnalytics();
+                  }
+                }}
                 disabled={!isLoaded}
               >
                 {analyticsEnabled ? "無効にする" : "有効にする"}
