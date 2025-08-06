@@ -2,7 +2,7 @@
 title: ブログリリースしました！体質に合った記事や季節の養生が読めます
 date: 2025-08-06
 category: お知らせ
-image: /placeholder.svg?height=200&width=300
+image: /images/owner-blog/constitution-check-release.jpg
 ---
 
 こんにちは、Neiby 開発担当の佐藤です。
