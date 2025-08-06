@@ -1,6 +1,40 @@
+"use client";
+
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function CookieSettingsPage() {
+  const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // 現在のCookie設定を確認
+    const currentConsent = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('neiby_cookie_consent='));
+    
+    const isAccepted = currentConsent && currentConsent.split('=')[1] === 'true';
+    setAnalyticsEnabled(isAccepted);
+    setIsLoaded(true);
+  }, []);
+
+  const toggleAnalytics = () => {
+    const newState = !analyticsEnabled;
+    
+    // Cookieを設定
+    document.cookie = `neiby_cookie_consent=${newState}; path=/; max-age=${365 * 24 * 60 * 60}`;
+    
+    // Google Analyticsの設定を更新
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('consent', 'update', {
+        analytics_storage: newState ? 'granted' : 'denied',
+        ad_storage: newState ? 'granted' : 'denied',
+      });
+    }
+    
+    setAnalyticsEnabled(newState);
+  };
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-50 via-indigo-50 to-slate-100 py-20 px-4">
       <div className="container mx-auto max-w-3xl">
@@ -34,46 +68,18 @@ export default function CookieSettingsPage() {
               <p className="text-sm text-gray-600 mb-2">
                 Google Analyticsによるサイトの利用状況分析に使用されます。
               </p>
-              <button
-                id="analytics-toggle"
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-                onClick={() => {
-                  // JavaScript for cookie management
-                  const script = document.createElement("script");
-                  script.innerHTML = `
-                    const currentConsent = document.cookie
-                      .split('; ')
-                      .find(row => row.startsWith('neiby_cookie_consent='));
-                    
-                    const isAccepted = currentConsent && currentConsent.split('=')[1] === 'true';
-                    
-                    if (isAccepted) {
-                      document.cookie = 'neiby_cookie_consent=false; path=/; max-age=' + (365 * 24 * 60 * 60);
-                      this.textContent = '有効にする';
-                      this.className = 'px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors';
-                      if (window.gtag) {
-                        window.gtag('consent', 'update', {
-                          analytics_storage: 'denied',
-                          ad_storage: 'denied',
-                        });
-                      }
-                    } else {
-                      document.cookie = 'neiby_cookie_consent=true; path=/; max-age=' + (365 * 24 * 60 * 60);
-                      this.textContent = '無効にする';
-                      this.className = 'px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors';
-                      if (window.gtag) {
-                        window.gtag('consent', 'update', {
-                          analytics_storage: 'granted',
-                          ad_storage: 'granted',
-                        });
-                      }
-                    }
-                  `;
-                  document.head.appendChild(script);
-                }}
-              >
-                設定を切り替える
-              </button>
+              {isLoaded && (
+                <button
+                  className={`px-4 py-2 text-white rounded transition-colors ${
+                    analyticsEnabled 
+                      ? 'bg-blue-600 hover:bg-blue-700' 
+                      : 'bg-gray-600 hover:bg-gray-700'
+                  }`}
+                  onClick={toggleAnalytics}
+                >
+                  {analyticsEnabled ? '無効にする' : '有効にする'}
+                </button>
+              )}
             </div>
           </div>
 
@@ -96,30 +102,6 @@ export default function CookieSettingsPage() {
           </Link>
         </div>
       </div>
-
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            // 現在のCookie設定を表示に反映
-            document.addEventListener('DOMContentLoaded', function() {
-              const currentConsent = document.cookie
-                .split('; ')
-                .find(row => row.startsWith('neiby_cookie_consent='));
-              
-              const button = document.getElementById('analytics-toggle');
-              const isAccepted = currentConsent && currentConsent.split('=')[1] === 'true';
-              
-              if (isAccepted) {
-                button.textContent = '無効にする';
-                button.className = 'px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors';
-              } else {
-                button.textContent = '有効にする';
-                button.className = 'px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors';
-              }
-            });
-          `,
-        }}
-      />
     </main>
   );
 }
