@@ -4,6 +4,8 @@ import matter from "gray-matter";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { paginateItems } from "@/lib/pagination";
 import { ArticlePagination } from "@/components/ArticlePagination";
 
@@ -117,7 +119,7 @@ export default async function ConstitutionTypePage({
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-indigo-50 to-slate-100">
       <section className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl">
+        <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h1 className="text-3xl font-light text-gray-900 mb-4 tracking-tight">
               {typeName}体質の記事一覧
@@ -133,11 +135,14 @@ export default async function ConstitutionTypePage({
               </div>
             )}
             {paginationResult.items.map((article) => (
-              <Link
+              <Card
                 key={article.slug}
-                href={`/constitution/${type}/${article.slug}`}
+                className="group overflow-hidden hover:shadow-md transition-all duration-300 border border-gray-200 bg-white rounded-lg"
               >
-                <div className="group overflow-hidden hover:shadow-md transition-all duration-300 border border-gray-200 bg-white rounded-lg cursor-pointer flex flex-col h-full">
+                <Link
+                  href={`/constitution/${type}/${article.slug}`}
+                  className="block"
+                >
                   <div className="aspect-video overflow-hidden">
                     <Image
                       src={article.image}
@@ -147,30 +152,32 @@ export default async function ConstitutionTypePage({
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
-                  <div className="p-4 flex-1 flex flex-col">
-                    <div className="flex flex-wrap gap-2 mb-2">
+                  <CardHeader className="pb-3">
+                    <div className="flex flex-wrap gap-2 mb-3">
                       {article.category && (
-                        <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded font-medium text-xs">
+                        <Badge className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-medium">
                           {article.category}
-                        </span>
+                        </Badge>
                       )}
                       {Array.isArray(article.tags) &&
                         article.tags.slice(0, 2).map((tag) => (
-                          <span
+                          <Badge
                             key={tag}
                             className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs"
                           >
                             #{tag}
-                          </span>
+                          </Badge>
                         ))}
                     </div>
-                    <div className="font-bold text-gray-900 mb-1 text-base group-hover:text-gray-700 transition-colors">
+                    <CardTitle className="text-base md:text-lg leading-tight text-gray-900 group-hover:text-gray-700 transition-colors font-medium">
                       {article.title}
-                    </div>
-                    <div className="text-gray-600 text-xs mb-3 leading-relaxed line-clamp-3">
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <p className="text-gray-600 text-xs md:text-base mb-3 leading-relaxed">
                       {article.excerpt}
-                    </div>
-                    <div className="flex items-center text-xs text-gray-500 mt-auto">
+                    </p>
+                    <div className="flex items-center text-xs md:text-sm text-gray-500">
                       <Calendar className="h-4 w-4 mr-2" />
                       {article.date}
                       {article.readingTime && (
@@ -179,9 +186,9 @@ export default async function ConstitutionTypePage({
                         </span>
                       )}
                     </div>
-                  </div>
-                </div>
-              </Link>
+                  </CardContent>
+                </Link>
+              </Card>
             ))}
           </div>
 

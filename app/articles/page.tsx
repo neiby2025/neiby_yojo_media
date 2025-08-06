@@ -24,6 +24,8 @@ function getAllArticles() {
       const fullPath = path.join(dir, entry);
       const stat = fs.statSync(fullPath);
       if (stat.isDirectory()) {
+        // owner-blogディレクトリは除外
+        if (entry === "owner-blog") continue;
         walk(fullPath);
       } else if (entry.endsWith(".md") && entry !== "README.md") {
         const slug = entry.replace(/\.md$/, "");

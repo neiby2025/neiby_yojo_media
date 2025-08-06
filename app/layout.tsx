@@ -6,9 +6,13 @@ import Header from "@/components/header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
+  title: "Neiby｜体質診断できる養生メディア",
+  description:
+    "東洋医学の視点から体質診断を行い、個人に合った養生法をお伝えするメディアサイト",
   generator: "v0.dev",
+  icons: {
+    icon: "/logo-min.jpg",
+  },
 };
 
 export default function RootLayout({

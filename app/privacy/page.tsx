@@ -7,25 +7,106 @@ export default function PrivacyPage() {
         <h1 className="text-2xl md:text-3xl font-light text-gray-900 text-center mb-10 tracking-tight">
           プライバシーポリシー
         </h1>
+
         <div className="bg-white rounded-lg shadow p-8 mb-8 text-gray-700 text-sm leading-relaxed">
           <p>
-            Neiby（以下「当サイト」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。取得する情報、利用目的、管理方法等について以下の通り定めます。
+            Neiby（以下「当サイト」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。本ポリシーでは、当サイトにおける個人情報の取得、利用、管理等について説明いたします。
           </p>
-          <h2 className="text-lg font-semibold mt-6 mb-2">1. 取得する情報</h2>
-          <p>お問い合わせフォーム等で取得する氏名・メールアドレス等。</p>
-          <h2 className="text-lg font-semibold mt-6 mb-2">2. 利用目的</h2>
-          <p>ご質問への回答、サービス向上のための分析等。</p>
-          <h2 className="text-lg font-semibold mt-6 mb-2">3. 情報の管理</h2>
-          <p>取得した個人情報は適切に管理し、第三者に提供しません。</p>
-          <h2 className="text-lg font-semibold mt-6 mb-2">4. 免責事項</h2>
-          <p>当サイトの利用により生じた損害について一切の責任を負いません。</p>
-          <h2 className="text-lg font-semibold mt-6 mb-2">5. 改定</h2>
-          <p>本ポリシーは予告なく改定されることがあります当サイトでは、第三者配信の広告サービス（Amazonアソシエイト含む）を利用しています。
-このような広告配信事業者は、ユーザーの興味に応じた商品・サービスの広告を表示するため、当サイトや他サイトへのアクセスに関する情報『Cookie』を使用することがあります。
 
-Amazonのアソシエイトとして、当メディアは適格販売により収入を得ています。
-。</p>
+          <h2 className="text-lg font-semibold mt-6 mb-2">1. 個人情報の定義</h2>
+          <p>
+            「個人情報」とは、氏名、メールアドレス、住所、電話番号、生年月日など、個人を特定できる情報を指します。また、IPアドレス、Cookie、端末情報などのオンライン識別子も含まれます。
+          </p>
+
+          <h2 className="text-lg font-semibold mt-6 mb-2">2. 取得する情報</h2>
+          <p>
+            当サイトでは、以下の情報を取得することがあります：
+            <ul className="list-disc pl-5 mt-2">
+              <li>
+                お問い合わせフォーム等で取得される氏名・メールアドレスなど
+              </li>
+              <li>アクセス解析のためのCookie情報、IPアドレス、端末情報など</li>
+            </ul>
+          </p>
+
+          <h2 className="text-lg font-semibold mt-6 mb-2">3. 利用目的</h2>
+          <p>
+            取得した個人情報は、以下の目的で利用します：
+            <ul className="list-disc pl-5 mt-2">
+              <li>お問い合わせ対応</li>
+              <li>サービス向上のための分析</li>
+              <li>広告配信・マーケティング</li>
+              <li>法令に基づく対応</li>
+            </ul>
+          </p>
+
+          <h2 className="text-lg font-semibold mt-6 mb-2">
+            4. 第三者提供について
+          </h2>
+          <p>
+            当サイトでは、以下の場合を除き、個人情報を第三者に提供することはありません：
+            <ul className="list-disc pl-5 mt-2">
+              <li>ご本人の同意がある場合</li>
+              <li>法令に基づく場合</li>
+              <li>業務委託先に対して機密保持契約のもとで提供する場合</li>
+              <li>個人を特定できない統計データとしての利用</li>
+            </ul>
+          </p>
+
+          <h2 className="text-lg font-semibold mt-6 mb-2">
+            5. Amazonアソシエイト・プログラムについて
+          </h2>
+          <p>
+            当サイトは、Amazonアソシエイト・プログラムの参加者です。これにより、Amazon.co.jpを宣伝しリンクすることで、サイトが紹介料を獲得できるアフィリエイトプログラムに参加しています。
+          </p>
+          <p className="mt-2">
+            このプログラムでは、第三者（Amazonを含む）がコンテンツおよび広告を提供し、ユーザーから直接情報を収集するためにCookie等を使用することがあります。これにより、ユーザーの訪問履歴に基づいて適切な広告を表示することが可能になります。
+          </p>
+          <p className="mt-2">
+            広告におけるCookieの使用を望まない場合は、ブラウザの設定または広告提供事業者のオプトアウトページから無効化することができます。
+          </p>
+
+          <h2 className="text-lg font-semibold mt-6 mb-2">
+            6. Cookieの使用について
+          </h2>
+          <p>
+            当サイトでは、アクセス解析や広告配信の最適化のため、Cookieを使用しています。Cookieは個人を特定するものではなく、ブラウザを通じてデバイスに保存される小さなデータです。
+          </p>
+
+          <h2 className="text-lg font-semibold mt-6 mb-2">
+            7. 個人情報の安全管理
+          </h2>
+          <p>
+            当サイトは、個人情報の漏洩、滅失、毀損等を防止するため、必要かつ適切な安全管理措置を講じます。また、健康情報などのセンシティブ情報は医療倫理に基づき厳重に管理し、外部に公開することはありません。
+          </p>
+
+          <h2 className="text-lg font-semibold mt-6 mb-2">
+            8. 個人情報の開示・訂正・削除
+          </h2>
+          <p>
+            ご本人からの請求があった場合、保有している個人情報の開示・訂正・削除に対応いたします。詳細は下記の連絡先よりご相談ください。
+          </p>
+
+          <h2 className="text-lg font-semibold mt-6 mb-2">9. 免責事項</h2>
+          <p>
+            当サイトのコンテンツを利用したことにより発生したトラブルや損害等について、当サイトは一切の責任を負いません。
+          </p>
+
+          <h2 className="text-lg font-semibold mt-6 mb-2">
+            10. プライバシーポリシーの変更
+          </h2>
+          <p>
+            本ポリシーは、法令改正やサービス内容の変更に応じて予告なく更新されることがあります。最新のプライバシーポリシーは常に本ページにてご確認いただけます。
+          </p>
+
+          <h2 className="text-lg font-semibold mt-6 mb-2">11. お問い合わせ</h2>
+          <p>
+            個人情報の取扱いに関するお問い合わせは、以下のメールアドレスまでお願いいたします。
+            <br />
+            <strong>Email：</strong>neiby.service@gmail.com
+          </p>
         </div>
+
         <div className="text-center">
           <Link href="/" className="text-blue-600 hover:underline">
             トップページへ戻る

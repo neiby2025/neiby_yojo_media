@@ -54,8 +54,8 @@ export default async function OwnerBlogPost({
         }
         <div class=\"text-xs text-gray-500 mb-6\">${dateStr}</div>
         ${
-          image
-            ? `<div class=\"mb-6 rounded-lg overflow-hidden aspect-video bg-gray-100\"><img src=\"${image}\" alt=\"${title}\" width=\"800\" height=\"400\" class=\"w-full h-auto object-cover\" /></div>`
+          image && image !== ""
+            ? `<div class=\"mb-6 rounded-lg overflow-hidden aspect-[4/3] bg-gray-100\"><img src=\"${image}\" alt=\"${title}\" width=\"800\" height=\"600\" class=\"w-full h-auto object-cover\" /></div>`
             : ""
         }
         <article

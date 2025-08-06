@@ -44,7 +44,7 @@ function guessTypeFromFrontmatterOrSlug(data: any, slug: string): string {
 }
 
 export default function HomePage() {
-  // content配下の全mdファイルを再帰的に取得
+  // content配下の全mdファイルを再帰的に取得（owner-blogを除外）
   function getAllMarkdownFiles(dir: string): string[] {
     let results: string[] = [];
     const list = fs.readdirSync(dir);
@@ -52,6 +52,8 @@ export default function HomePage() {
       const filePath = path.join(dir, file);
       const stat = fs.statSync(filePath);
       if (stat && stat.isDirectory()) {
+        // owner-blogディレクトリは除外
+        if (file === "owner-blog") return;
         results = results.concat(getAllMarkdownFiles(filePath));
       } else if (file.endsWith(".md")) {
         results.push(filePath);
@@ -295,27 +297,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Newsletter Section */}
+      {/* Contact Section */}
       <section className="py-20 px-4 bg-gradient-to-r from-blue-100 via-indigo-100 to-slate-100">
         <div className="container mx-auto max-w-3xl text-center">
           <h2 className="text-xl md:text-2xl font-light text-gray-900 mb-6 tracking-tight">
-            もっと養生のことを学びませんか？
+            ご質問やご相談はお気軽に
           </h2>
           <p className="text-base text-gray-600 mb-8 leading-relaxed">
-            最新の東洋医学の知識やセルフケア情報を
+            東洋医学や養生に関するご質問、
             <br />
-            LINEでお届けします
+            体質診断についてなど、お気軽にお問い合わせください
           </p>
-          <a
-            href="https://page.line.me/174fmxur"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/contact"
             className="inline-flex items-center justify-center bg-[#1a357b] hover:bg-[#2a4a8b] text-white px-8 py-4 text-lg font-medium rounded-md shadow-sm hover:shadow-md transition-all duration-200"
             style={{ textDecoration: "none" }}
           >
             <MessageCircle className="mr-2 h-5 w-5" />
-            LINEで友達追加
-          </a>
+            お問い合わせ
+          </Link>
         </div>
       </section>
     </div>

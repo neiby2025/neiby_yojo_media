@@ -11,12 +11,14 @@ interface ArticlePageProps {
   params: Promise<{ slug: string }>;
 }
 
-// content配下を再帰的に探索してslug一致のmdファイルを探す
+// content配下を再帰的に探索してslug一致のmdファイルを探す（owner-blogを除外）
 function findArticleFile(slug: string, dir: string): string | null {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
+      // owner-blogディレクトリは除外
+      if (entry.name === "owner-blog") continue;
       const found = findArticleFile(slug, fullPath);
       if (found) return found;
     } else if (entry.isFile() && entry.name === `${slug}.md`) {

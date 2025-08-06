@@ -2,7 +2,7 @@
 title: Neiby運営の想い
 date: 2025-07-30
 category: コラム
-image: /placeholder.svg
+image: /neiby_logo.png
 ---
 
 こんにちは、Neiby 編集部です。

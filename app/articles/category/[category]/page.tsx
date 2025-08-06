@@ -40,6 +40,25 @@ function guessTypeFromFrontmatterOrSlug(data: any, slug: string): string {
   return "other";
 }
 
+function getArticleUrl(category: string, slug: string, type: string): string {
+  // カテゴリに応じて適切なURLパスを返す
+  switch (category) {
+    case "メンタル養生":
+      return `/articles/mental/${slug}`;
+    case "季節の養生":
+      return `/articles/seasonal/${slug}`;
+    case "ライフスタイル":
+      return `/articles/lifestyle/${slug}`;
+    case "栄養学":
+      return `/articles/nutrition/${slug}`;
+    case "体質改善":
+      return `/constitution/${type}/${slug}`;
+    default:
+      // 一般的な記事の場合
+      return `/articles/${slug}`;
+  }
+}
+
 export default async function CategoryPage({
   params,
   searchParams,
@@ -107,7 +126,11 @@ export default async function CategoryPage({
               className="group overflow-hidden hover:shadow-md transition-all duration-300 border border-gray-200 bg-white rounded-lg"
             >
               <Link
-                href={`/constitution/${article.type}/${article.slug}`}
+                href={getArticleUrl(
+                  article.category,
+                  article.slug,
+                  article.type
+                )}
                 className="block"
               >
                 <div className="aspect-video overflow-hidden">

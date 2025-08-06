@@ -73,12 +73,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
         <div className="text-xs text-gray-500 mb-6">{dateStr}</div>
         {data.image && (
-          <div className="mb-6 rounded-lg overflow-hidden aspect-video bg-gray-100">
+          <div className="mb-6 rounded-lg overflow-hidden aspect-[4/3] bg-gray-100">
             <Image
               src={data.image}
               alt={data.title}
               width={800}
-              height={400}
+              height={600}
               className="w-full h-auto object-cover"
             />
           </div>
