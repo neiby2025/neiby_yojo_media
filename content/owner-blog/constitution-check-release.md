@@ -2,7 +2,7 @@
 title: ブログリリースしました！体質に合った記事や季節の養生が読めます
 date: 2025-08-06
 category: お知らせ
-image: /images/owner-blog/constitution-check-release.jpg
+image: /placeholder.svg?height=200&width=300
 ---
 
 こんにちは、Neiby開発担当の佐藤です。
@@ -15,7 +15,6 @@ image: /images/owner-blog/constitution-check-release.jpg
 
 また、**季節ごとの不調に合わせた“季節の養生”**も発信。
 夏のだるさ、秋の乾燥、冬の冷えなど、東洋医学の視点での対策を、日常に取り入れやすい形でご紹介していきます。
-
 ## こんな方におすすめです
 - 自分の体質をもっと深く知りたい
 - 養生を続けたいけど何から始めればいいかわからない
