@@ -10,28 +10,31 @@ export default function CookieSettingsPage() {
   useEffect(() => {
     // 現在のCookie設定を確認
     const currentConsent = document.cookie
-      .split('; ')
-      .find(row => row.startsWith('neiby_cookie_consent='));
-    
-    const isAccepted = currentConsent && currentConsent.split('=')[1] === 'true';
+      .split("; ")
+      .find((row) => row.startsWith("neiby_cookie_consent="));
+
+    const isAccepted =
+      currentConsent && currentConsent.split("=")[1] === "true";
     setAnalyticsEnabled(isAccepted);
     setIsLoaded(true);
   }, []);
 
   const toggleAnalytics = () => {
     const newState = !analyticsEnabled;
-    
+
     // Cookieを設定
-    document.cookie = `neiby_cookie_consent=${newState}; path=/; max-age=${365 * 24 * 60 * 60}`;
-    
+    document.cookie = `neiby_cookie_consent=${newState}; path=/; max-age=${
+      365 * 24 * 60 * 60
+    }`;
+
     // Google Analyticsの設定を更新
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('consent', 'update', {
-        analytics_storage: newState ? 'granted' : 'denied',
-        ad_storage: newState ? 'granted' : 'denied',
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("consent", "update", {
+        analytics_storage: newState ? "granted" : "denied",
+        ad_storage: newState ? "granted" : "denied",
       });
     }
-    
+
     setAnalyticsEnabled(newState);
   };
 
@@ -71,13 +74,13 @@ export default function CookieSettingsPage() {
               {isLoaded && (
                 <button
                   className={`px-4 py-2 text-white rounded transition-colors ${
-                    analyticsEnabled 
-                      ? 'bg-blue-600 hover:bg-blue-700' 
-                      : 'bg-gray-600 hover:bg-gray-700'
+                    analyticsEnabled
+                      ? "bg-blue-600 hover:bg-blue-700"
+                      : "bg-gray-600 hover:bg-gray-700"
                   }`}
                   onClick={toggleAnalytics}
                 >
-                  {analyticsEnabled ? '無効にする' : '有効にする'}
+                  {analyticsEnabled ? "無効にする" : "有効にする"}
                 </button>
               )}
             </div>
