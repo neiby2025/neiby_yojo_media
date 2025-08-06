@@ -15,6 +15,30 @@ export const metadata: Metadata = {
   icons: {
     icon: "/logo-min.jpg",
   },
+  openGraph: {
+    title: "Neiby｜体質診断できる養生メディア",
+    description:
+      "東洋医学の視点から体質診断を行い、個人に合った養生法をお伝えするメディアサイト",
+    url: "https://neiby-yojo.com",
+    siteName: "Neiby",
+    images: [
+      {
+        url: "/images/owner-blog/first-post.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Neiby - 体質診断できる養生メディア",
+      },
+    ],
+    locale: "ja_JP",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Neiby｜体質診断できる養生メディア",
+    description:
+      "東洋医学の視点から体質診断を行い、個人に合った養生法をお伝えするメディアサイト",
+    images: ["/images/owner-blog/first-post.jpg"],
+  },
 };
 
 export default function RootLayout({
