@@ -74,26 +74,73 @@ export default function PrivacyPage() {
           </p>
 
           <h2 className="text-lg font-semibold mt-6 mb-2">
-            7. 個人情報の安全管理
+            7. Google Analyticsの使用について
+          </h2>
+          <p>
+            当サイトでは、サイトの改善とサービス向上のため、Google
+            Inc.が提供するGoogle Analyticsを使用しています。Google
+            Analyticsはトラフィックデータの収集のためにCookieを使用しています。このトラフィックデータは匿名で収集されており、個人を特定するものではありません。
+            <br />
+            Google Analyticsの詳細については、
+            <a
+              href="https://marketingplatform.google.com/about/analytics/terms/jp/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Google Analyticsサービス利用規約
+            </a>
+            および
+            <a
+              href="https://policies.google.com/privacy?hl=ja"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Googleプライバシーポリシー
+            </a>
+            をご確認ください。
+            <br />
+            この機能を無効にするには、
+            <a
+              href="https://tools.google.com/dlpage/gaoptout?hl=ja"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Google Analytics オプトアウトアドオン
+            </a>
+            をインストールするか、
+            <Link
+              href="/cookie-settings"
+              className="text-blue-600 hover:underline"
+            >
+              Cookie設定ページ
+            </Link>
+            から設定を変更してください。
+          </p>
+
+          <h2 className="text-lg font-semibold mt-6 mb-2">
+            8. 個人情報の安全管理
           </h2>
           <p>
             当サイトは、個人情報の漏洩、滅失、毀損等を防止するため、必要かつ適切な安全管理措置を講じます。また、健康情報などのセンシティブ情報は医療倫理に基づき厳重に管理し、外部に公開することはありません。
           </p>
 
           <h2 className="text-lg font-semibold mt-6 mb-2">
-            8. 個人情報の開示・訂正・削除
+            9. 個人情報の開示・訂正・削除
           </h2>
           <p>
             ご本人からの請求があった場合、保有している個人情報の開示・訂正・削除に対応いたします。詳細は下記の連絡先よりご相談ください。
           </p>
 
-          <h2 className="text-lg font-semibold mt-6 mb-2">9. 免責事項</h2>
+          <h2 className="text-lg font-semibold mt-6 mb-2">10. 免責事項</h2>
           <p>
             当サイトのコンテンツを利用したことにより発生したトラブルや損害等について、当サイトは一切の責任を負いません。
           </p>
 
           <h2 className="text-lg font-semibold mt-6 mb-2">
-            10. プライバシーポリシーの変更
+            11. プライバシーポリシーの変更
           </h2>
           <p>
             本ポリシーは、法令改正やサービス内容の変更に応じて予告なく更新されることがあります。最新のプライバシーポリシーは常に本ページにてご確認いただけます。

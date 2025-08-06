@@ -4,6 +4,8 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/Footer";
+import Analytics from "@/components/Analytics";
+import CookieConsentBanner from "@/components/CookieConsent";
 
 export const metadata: Metadata = {
   title: "Neiby｜体質診断できる養生メディア",
@@ -26,6 +28,8 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <Analytics />
+        <CookieConsentBanner />
       </body>
     </html>
   );
