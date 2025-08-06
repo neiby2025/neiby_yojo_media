@@ -62,8 +62,47 @@ export default function HomePage() {
     return results;
   }
 
+  // 運営者ブログの記事を取得
+  function getOwnerBlogPosts() {
+    const ownerBlogDir = path.join(process.cwd(), "content", "owner-blog");
+    if (!fs.existsSync(ownerBlogDir)) return [];
+
+    const files = fs.readdirSync(ownerBlogDir).filter((f) => f.endsWith(".md"));
+    return files
+      .map((filename) => {
+        const slug = filename.replace(/\.md$/, "");
+        const filePath = path.join(ownerBlogDir, filename);
+        const fileContent = fs.readFileSync(filePath, "utf-8");
+        const { data, content } = matter(fileContent);
+
+        // 日付を文字列として確実に処理
+        let dateString = "";
+        if (data.date) {
+          if (data.date instanceof Date) {
+            dateString = data.date.toISOString().split("T")[0];
+          } else {
+            dateString = String(data.date);
+          }
+        }
+
+        return {
+          slug,
+          title: String(data.title || slug),
+          date: dateString,
+          category: String(data.category || "コラム"),
+          image: String(data.image || "/placeholder.svg?height=200&width=300"),
+          excerpt: content.slice(0, 80) + "...",
+        };
+      })
+      .sort((a, b) => (a.date < b.date ? 1 : -1))
+      .slice(0, 3); // 最新3件
+  }
+
   const contentRoot = path.join(process.cwd(), "content");
   const allMdFiles = getAllMarkdownFiles(contentRoot);
+
+  // 運営者ブログの最新記事を取得
+  const ownerBlogPosts = getOwnerBlogPosts();
 
   // 記事データを生成
   const articles = allMdFiles
@@ -72,14 +111,25 @@ export default function HomePage() {
       const fileContent = fs.readFileSync(filePath, "utf-8");
       const { data, content } = matter(fileContent);
       const type = guessTypeFromFrontmatterOrSlug(data, slug);
+
+      // 日付を文字列として確実に処理
+      let dateString = "";
+      if (data.publishedAt) {
+        if (data.publishedAt instanceof Date) {
+          dateString = data.publishedAt.toISOString().split("T")[0];
+        } else {
+          dateString = String(data.publishedAt);
+        }
+      }
+
       return {
         slug,
         type,
-        title: data.title || slug,
-        excerpt: data.description || content.slice(0, 80) + "...",
-        tags: data.tags || [],
-        image: data.image || "/placeholder.svg?height=200&width=300",
-        date: data.publishedAt || "",
+        title: String(data.title || slug),
+        excerpt: String(data.description || content.slice(0, 80) + "..."),
+        tags: Array.isArray(data.tags) ? data.tags : [],
+        image: String(data.image || "/placeholder.svg?height=200&width=300"),
+        date: dateString,
         fullPath: filePath,
       };
     })
@@ -294,6 +344,74 @@ export default function HomePage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Owner Blog Section */}
+      <section className="py-20 px-4 bg-white/50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-xl md:text-2xl font-light text-gray-900 mb-4 tracking-tight">
+              お知らせ・運営者コラム
+            </h2>
+            <p className="text-gray-600 text-sm mb-6">
+              Neibyの開発の裏側や想い、養生に関するコラムをお届けします
+            </p>
+            <Link
+              href="/owner-blog"
+              className="inline-block text-[#1a357b] hover:text-[#2a4a8b] text-sm font-medium border-b border-[#1a357b] hover:border-[#2a4a8b] transition-colors"
+            >
+              すべて見る →
+            </Link>
+          </div>
+          {ownerBlogPosts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {ownerBlogPosts.map((post) => (
+                <Card
+                  key={post.slug}
+                  className="group overflow-hidden hover:shadow-md transition-all duration-300 border border-gray-200 bg-white rounded-lg"
+                >
+                  <Link href={`/owner-blog/${post.slug}`} className="block">
+                    <div className="aspect-video overflow-hidden">
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        width={300}
+                        height={200}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <CardHeader className="pb-3">
+                      <div className="flex items-center mb-3">
+                        <Badge
+                          variant="secondary"
+                          className="bg-blue-100 text-blue-700 hover:bg-blue-200 rounded-md px-2 py-1 text-xs font-medium"
+                        >
+                          {post.category}
+                        </Badge>
+                      </div>
+                      <CardTitle className="text-base leading-tight text-gray-900 group-hover:text-gray-700 transition-colors font-medium">
+                        {post.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <p className="text-gray-600 text-xs mb-3 leading-relaxed">
+                        {post.excerpt}
+                      </p>
+                      <div className="flex items-center text-xs text-gray-500">
+                        <Calendar className="h-4 w-4 mr-2" />
+                        {post.date}
+                      </div>
+                    </CardContent>
+                  </Link>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-gray-500 text-sm">記事を準備中です</p>
+            </div>
+          )}
         </div>
       </section>
 
