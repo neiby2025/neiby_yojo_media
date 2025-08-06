@@ -14,4 +14,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
-console.log("Firebase Config:", firebaseConfig);
+if (process.env.NODE_ENV === "development") {
+  console.log("Firebase Config:", firebaseConfig);
+}

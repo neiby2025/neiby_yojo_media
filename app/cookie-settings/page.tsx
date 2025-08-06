@@ -71,18 +71,17 @@ export default function CookieSettingsPage() {
               <p className="text-sm text-gray-600 mb-2">
                 Google Analyticsによるサイトの利用状況分析に使用されます。
               </p>
-              {isLoaded && (
-                <button
-                  className={`px-4 py-2 text-white rounded transition-colors ${
-                    analyticsEnabled
-                      ? "bg-blue-600 hover:bg-blue-700"
-                      : "bg-gray-600 hover:bg-gray-700"
-                  }`}
-                  onClick={toggleAnalytics}
-                >
-                  {analyticsEnabled ? "無効にする" : "有効にする"}
-                </button>
-              )}
+              <button
+                className={`px-4 py-2 text-white rounded transition-colors ${
+                  analyticsEnabled
+                    ? "bg-blue-600 hover:bg-blue-700"
+                    : "bg-gray-600 hover:bg-gray-700"
+                } ${!isLoaded ? "opacity-50 cursor-not-allowed" : ""}`}
+                onClick={isLoaded ? toggleAnalytics : undefined}
+                disabled={!isLoaded}
+              >
+                {analyticsEnabled ? "無効にする" : "有効にする"}
+              </button>
             </div>
           </div>
 
