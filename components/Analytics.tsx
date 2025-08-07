@@ -2,9 +2,11 @@
 
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { useEffect, useState } from "react";
+import Script from "next/script";
 
 export default function Analytics() {
   const gaId = process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID;
+  const adSenseClientId = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID;
   const [consentGiven, setConsentGiven] = useState(false);
 
   useEffect(() => {
@@ -27,11 +29,19 @@ export default function Analytics() {
     }
   }, []);
 
-  if (!gaId) {
-    return null;
-  }
-
-  return <GoogleAnalytics gaId={gaId} />;
+  return (
+    <>
+      {gaId && <GoogleAnalytics gaId={gaId} />}
+      {adSenseClientId && consentGiven && (
+        <Script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adSenseClientId}`}
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      )}
+    </>
+  );
 }
 
 // TypeScript用の型定義
