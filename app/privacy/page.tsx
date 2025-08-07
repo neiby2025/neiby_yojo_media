@@ -124,11 +124,14 @@ export default function PrivacyPage() {
             8. Google AdSenseの使用について
           </h2>
           <p>
-            当サイトでは、広告配信のためGoogle Inc.が提供するGoogle AdSenseを使用しています。
-            Google AdSenseは、広告配信の最適化とパーソナライゼーションのためにCookieを使用し、
+            当サイトでは、広告配信のためGoogle Inc.が提供するGoogle
+            AdSenseを使用しています。 Google
+            AdSenseは、広告配信の最適化とパーソナライゼーションのためにCookieを使用し、
             過去のアクセス情報に基づいて適切な広告を表示します。
-            <br /><br />
-            Google AdSenseによる広告配信では、以下の情報が収集される場合があります：
+            <br />
+            <br />
+            Google
+            AdSenseによる広告配信では、以下の情報が収集される場合があります：
             <ul className="list-disc pl-5 mt-2">
               <li>サイト訪問履歴</li>
               <li>地理的位置情報（大まかな地域）</li>

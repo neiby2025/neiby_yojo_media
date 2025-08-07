@@ -18,29 +18,29 @@ export default function GoogleAdsense({
   className = "",
 }: GoogleAdsenseProps) {
   const [consentGiven, setConsentGiven] = useState(false);
+  const [advertisingConsent, setAdvertisingConsent] = useState(false);
 
   useEffect(() => {
-    // Cookie同意状況をチェック
-    const consent = document.cookie
+    // 詳細Cookie同意状況をチェック
+    const generalConsent = document.cookie
       .split("; ")
       .find((row) => row.startsWith("neiby_cookie_consent="));
+    
+    const advertisingConsentCookie = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("neiby_consent_advertising="));
 
-    if (consent) {
-      setConsentGiven(consent.split("=")[1] === "true");
-    }
+    const hasGeneralConsent = generalConsent && generalConsent.split("=")[1] === "true";
+    const hasAdvertisingConsent = advertisingConsentCookie 
+      ? advertisingConsentCookie.split("=")[1] === "true"
+      : hasGeneralConsent; // フォールバック
+
+    setConsentGiven(hasGeneralConsent);
+    setAdvertisingConsent(hasAdvertisingConsent);
 
     // Google AdSenseスクリプトの読み込みと初期化
-    if (consentGiven && typeof window !== "undefined") {
+    if (hasAdvertisingConsent && typeof window !== "undefined") {
       try {
-        // Google Consentの設定
-        if (window.gtag) {
-          window.gtag("consent", "update", {
-            ad_storage: "granted",
-            ad_user_data: "granted",
-            ad_personalization: "granted",
-          });
-        }
-        
         // AdSenseの初期化
         if (window.adsbygoogle) {
           (window.adsbygoogle as any[]).push({});
@@ -49,11 +49,22 @@ export default function GoogleAdsense({
         console.error("AdSense error:", error);
       }
     }
-  }, [consentGiven]);
-
-  // Cookie同意がない場合は何も表示しない
-  if (!consentGiven) {
-    return null;
+  }, []);  // 広告Cookie同意がない場合は何も表示しない
+  if (!advertisingConsent) {
+    return (
+      <div className={`adsense-container ${className} text-center p-4 bg-gray-100 rounded`}>
+        <p className="text-sm text-gray-600">
+          広告を表示するには、
+          <button 
+            onClick={() => window.location.href = '/cookie-settings'}
+            className="text-blue-600 hover:underline mx-1"
+          >
+            Cookie設定
+          </button>
+          で広告Cookieを有効にしてください。
+        </p>
+      </div>
+    );
   }
 
   const adClient = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID;

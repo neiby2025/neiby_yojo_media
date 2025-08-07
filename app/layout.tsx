@@ -5,7 +5,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
-import CookieConsentBanner from "@/components/CookieConsent";
+import EnhancedCookieConsent from "@/components/EnhancedCookieConsent";
 import Script from "next/script";
 
 export const metadata: Metadata = {
@@ -61,7 +61,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <Analytics />
-        <CookieConsentBanner />
+        <EnhancedCookieConsent />
       </body>
     </html>
   );
