@@ -9,12 +9,16 @@ import CookieConsentBanner from "@/components/CookieConsent";
 import Script from "next/script";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://neiby-yojo.com"),
   title: "Neiby｜体質診断できる養生メディア",
   description:
     "東洋医学の視点から体質診断を行い、個人に合った養生法をお伝えするメディアサイト",
   generator: "v0.dev",
   icons: {
     icon: "/logo-min.jpg",
+  },
+  other: {
+    "google-adsense-account": "ca-pub-1468581508096237",
   },
   openGraph: {
     title: "Neiby｜体質診断できる養生メディア",
@@ -50,12 +54,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
-        <Script
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1468581508096237"
           crossOrigin="anonymous"
-          strategy="beforeInteractive"
         />
+        <meta name="google-adsense-account" content="ca-pub-1468581508096237" />
       </head>
       <body className={GeistSans.className}>
         <Header />
