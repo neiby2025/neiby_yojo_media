@@ -1,10 +1,27 @@
-// 実装例：記事ページに広告を追加
-// app/articles/[slug]/page.tsx
+/**
+ * 記事ページに広告を追加する実装例
+ * 
+ * このファイルは実装の参考例です。
+ * 実際の記事ページ（app/articles/[slug]/page.tsx）で使用してください。
+ */
 
 import { InArticleAd, ResponsiveAd } from "@/components/AdComponents";
 
-export default async function ArticlePage({ params }: ArticlePageProps) {
-  // ... 既存のコード ...
+// 型定義例
+interface ArticlePageProps {
+  params: Promise<{ slug: string }>;
+}
+
+// 使用例のコンポーネント（実際には使用されません）
+export default async function ArticlePageExample({ params }: ArticlePageProps) {
+  // 実際の実装では、記事データの取得処理などが入ります
+  const { slug } = await params;
+  
+  // ダミーデータ（実際の実装では記事データを使用）
+  const data = {
+    title: "記事タイトル例"
+  };
+  const htmlContent = "<p>記事コンテンツ例</p>";
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-50 via-indigo-50 to-slate-100 py-10 px-4">
@@ -22,7 +39,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         {/* 既存のメタ情報 */}
         {/* ... */}
 
-        <article className="prose max-w-none...">
+        <article className="prose max-w-none">
           <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
         </article>
 
