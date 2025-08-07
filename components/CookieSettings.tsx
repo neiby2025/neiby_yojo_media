@@ -35,6 +35,8 @@ export default function CookieSettings({ onToggle }: CookieSettingsProps) {
       (window as any).gtag("consent", "update", {
         analytics_storage: newState ? "granted" : "denied",
         ad_storage: newState ? "granted" : "denied",
+        ad_user_data: newState ? "granted" : "denied",
+        ad_personalization: newState ? "granted" : "denied",
       });
     }
 
@@ -56,9 +58,10 @@ export default function CookieSettings({ onToggle }: CookieSettingsProps) {
       </div>
 
       <div className="border border-gray-200 rounded-lg p-4">
-        <h3 className="font-semibold mb-2">アクセス解析Cookie</h3>
+        <h3 className="font-semibold mb-2">アクセス解析・広告Cookie</h3>
         <p className="text-sm text-gray-600 mb-2">
-          Google Analyticsによるサイトの利用状況分析に使用されます。
+          Google AnalyticsとGoogle AdSenseによるサイトの利用状況分析と広告配信に使用されます。
+          パーソナライズされた広告の表示も含まれます。
         </p>
         <button
           className={`px-4 py-2 text-white rounded transition-colors ${
@@ -71,6 +74,16 @@ export default function CookieSettings({ onToggle }: CookieSettingsProps) {
         >
           {analyticsEnabled ? "無効にする" : "有効にする"}
         </button>
+        {analyticsEnabled && (
+          <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded text-sm text-green-700">
+            アクセス解析と広告配信が有効です。パーソナライズ広告が表示されます。
+          </div>
+        )}
+        {!analyticsEnabled && (
+          <div className="mt-2 p-2 bg-yellow-50 border border-yellow-200 rounded text-sm text-yellow-700">
+            広告配信が無効です。一般的な広告のみが表示され、サイト収益が低下する場合があります。
+          </div>
+        )}
       </div>
     </div>
   );

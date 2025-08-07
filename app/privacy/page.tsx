@@ -121,32 +121,87 @@ export default function PrivacyPage() {
           </p>
 
           <h2 className="text-lg font-semibold mt-6 mb-2">
-            8. 個人情報の安全管理
+            8. Google AdSenseの使用について
+          </h2>
+          <p>
+            当サイトでは、広告配信のためGoogle Inc.が提供するGoogle AdSenseを使用しています。
+            Google AdSenseは、広告配信の最適化とパーソナライゼーションのためにCookieを使用し、
+            過去のアクセス情報に基づいて適切な広告を表示します。
+            <br /><br />
+            Google AdSenseによる広告配信では、以下の情報が収集される場合があります：
+            <ul className="list-disc pl-5 mt-2">
+              <li>サイト訪問履歴</li>
+              <li>地理的位置情報（大まかな地域）</li>
+              <li>デバイス情報</li>
+              <li>利用者の興味・関心に関する情報</li>
+            </ul>
+            <br />
+            Google AdSenseの詳細については、
+            <a
+              href="https://policies.google.com/privacy?hl=ja"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Googleプライバシーポリシー
+            </a>
+            および
+            <a
+              href="https://policies.google.com/technologies/ads?hl=ja"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Google広告設定
+            </a>
+            をご確認ください。
+            <br />
+            パーソナライズ広告を無効にするには、
+            <a
+              href="https://adssettings.google.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Google広告設定ページ
+            </a>
+            から設定を変更するか、
+            <Link
+              href="/cookie-settings"
+              className="text-blue-600 hover:underline"
+            >
+              Cookie設定ページ
+            </Link>
+            から広告用Cookieを無効にしてください。
+          </p>
+
+          <h2 className="text-lg font-semibold mt-6 mb-2">
+            9. 個人情報の安全管理
           </h2>
           <p>
             当サイトは、個人情報の漏洩、滅失、毀損等を防止するため、必要かつ適切な安全管理措置を講じます。また、健康情報などのセンシティブ情報は医療倫理に基づき厳重に管理し、外部に公開することはありません。
           </p>
 
           <h2 className="text-lg font-semibold mt-6 mb-2">
-            9. 個人情報の開示・訂正・削除
+            10. 個人情報の開示・訂正・削除
           </h2>
           <p>
             ご本人からの請求があった場合、保有している個人情報の開示・訂正・削除に対応いたします。詳細は下記の連絡先よりご相談ください。
           </p>
 
-          <h2 className="text-lg font-semibold mt-6 mb-2">10. 免責事項</h2>
+          <h2 className="text-lg font-semibold mt-6 mb-2">11. 免責事項</h2>
           <p>
             当サイトのコンテンツを利用したことにより発生したトラブルや損害等について、当サイトは一切の責任を負いません。
           </p>
 
           <h2 className="text-lg font-semibold mt-6 mb-2">
-            11. プライバシーポリシーの変更
+            12. プライバシーポリシーの変更
           </h2>
           <p>
             本ポリシーは、法令改正やサービス内容の変更に応じて予告なく更新されることがあります。最新のプライバシーポリシーは常に本ページにてご確認いただけます。
           </p>
 
-          <h2 className="text-lg font-semibold mt-6 mb-2">11. お問い合わせ</h2>
+          <h2 className="text-lg font-semibold mt-6 mb-2">13. お問い合わせ</h2>
           <p>
             個人情報の取扱いに関するお問い合わせは、以下のメールアドレスまでお願いいたします。
             <br />

@@ -29,9 +29,19 @@ export default function GoogleAdsense({
       setConsentGiven(consent.split("=")[1] === "true");
     }
 
-    // Google AdSenseスクリプトの読み込み
+    // Google AdSenseスクリプトの読み込みと初期化
     if (consentGiven && typeof window !== "undefined") {
       try {
+        // Google Consentの設定
+        if (window.gtag) {
+          window.gtag("consent", "update", {
+            ad_storage: "granted",
+            ad_user_data: "granted",
+            ad_personalization: "granted",
+          });
+        }
+        
+        // AdSenseの初期化
         if (window.adsbygoogle) {
           (window.adsbygoogle as any[]).push({});
         }

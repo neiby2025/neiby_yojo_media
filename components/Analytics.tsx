@@ -19,11 +19,13 @@ export default function Analytics() {
       setConsentGiven(consent.split("=")[1] === "true");
     }
 
-    // 初期のGoogle Analytics同意設定
+    // 初期のGoogle Analytics同意設定（GDPR対応）
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("consent", "default", {
         analytics_storage: "denied",
         ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
         wait_for_update: 500,
       });
     }

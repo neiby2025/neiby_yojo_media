@@ -39,29 +39,49 @@ export default function CookieConsentBanner() {
       }}
       expires={365}
       onAccept={() => {
-        // Google Analyticsを有効化
+        // Google Analyticsとアドセンスを有効化
         if (typeof window !== "undefined" && window.gtag) {
           window.gtag("consent", "update", {
             analytics_storage: "granted",
             ad_storage: "granted",
+            ad_user_data: "granted",
+            ad_personalization: "granted",
           });
+        }
+        
+        // AdSenseの再初期化
+        if (typeof window !== "undefined" && window.adsbygoogle) {
+          try {
+            (window.adsbygoogle as any[]).forEach((ad: any) => {
+              (window.adsbygoogle as any[]).push({});
+            });
+          } catch (error) {
+            console.log("AdSense reinitialization:", error);
+          }
         }
       }}
       onDecline={() => {
-        // Google Analyticsを無効化
+        // Google Analyticsとアドセンスを無効化
         if (typeof window !== "undefined" && window.gtag) {
           window.gtag("consent", "update", {
             analytics_storage: "denied",
             ad_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied",
           });
         }
       }}
     >
       <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
         <div className="flex-1">
-          当サイトでは、サービスの向上とアクセス解析のためにCookieを使用しています。
+          当サイトでは、サービスの向上、アクセス解析、および広告配信の最適化のためにCookieを使用しています。
+          これには、パーソナライズされた広告の表示とGoogle AdSenseによる広告収益の向上が含まれます。
           <Link href="/privacy" className="text-blue-400 hover:underline ml-1">
             プライバシーポリシー
+          </Link>
+          および
+          <Link href="/cookie-settings" className="text-blue-400 hover:underline ml-1">
+            Cookie設定
           </Link>
           をご確認の上、ご利用ください。
         </div>
