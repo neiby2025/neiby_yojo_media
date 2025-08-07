@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Calendar } from "lucide-react";
 import { remark } from "remark";
 import html from "remark-html";
+import { InArticleAd, ResponsiveAd } from "@/components/AdComponents";
 
 interface ArticlePageProps {
   params: Promise<{ slug: string }>;
@@ -57,6 +58,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-50 via-indigo-50 to-slate-100 py-10 px-4">
       <div className="container mx-auto max-w-2xl bg-white/95 rounded-xl shadow-md p-6 md:p-12">
+        
+        {/* 記事上部の広告 */}
+        <ResponsiveAd 
+          adSlot="1234567890" 
+          className="mb-6" 
+        />
+
         <h1 className="font-bold text-gray-900 mb-2 leading-tight text-[18px] md:text-[22px]">
           {data.title}
         </h1>
@@ -100,6 +108,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         >
           <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
         </article>
+
+        {/* 記事下部の広告 */}
+        <div className="mt-8 border-t pt-6">
+          <InArticleAd adSlot="1234567891" />
+        </div>
       </div>
     </main>
   );

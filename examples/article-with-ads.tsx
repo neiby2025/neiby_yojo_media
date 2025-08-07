@@ -1,6 +1,6 @@
 /**
  * 記事ページに広告を追加する実装例
- * 
+ *
  * このファイルは実装の参考例です。
  * 実際の記事ページ（app/articles/[slug]/page.tsx）で使用してください。
  */
@@ -16,10 +16,10 @@ interface ArticlePageProps {
 export default async function ArticlePageExample({ params }: ArticlePageProps) {
   // 実際の実装では、記事データの取得処理などが入ります
   const { slug } = await params;
-  
+
   // ダミーデータ（実際の実装では記事データを使用）
   const data = {
-    title: "記事タイトル例"
+    title: "記事タイトル例",
   };
   const htmlContent = "<p>記事コンテンツ例</p>";
 

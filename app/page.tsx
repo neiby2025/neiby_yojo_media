@@ -14,6 +14,7 @@ import Link from "next/link";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { ResponsiveAd } from "@/components/AdComponents";
 
 // typeをfrontmatterまたはファイル名から推測する関数
 function guessTypeFromFrontmatterOrSlug(data: any, slug: string): string {
@@ -434,6 +435,13 @@ export default function HomePage() {
             <MessageCircle className="mr-2 h-5 w-5" />
             お問い合わせ
           </Link>
+        </div>
+      </section>
+
+      {/* フッター広告 */}
+      <section className="py-8 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-4xl">
+          <ResponsiveAd adSlot="1234567892" className="mb-4" />
         </div>
       </section>
     </div>
