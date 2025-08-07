@@ -6,7 +6,12 @@ import Script from "next/script";
 declare global {
   interface Window {
     gtag: (...args: any[]) => void;
-    __tcfapi?: (command: string, version: number, callback: Function, parameter?: any) => void;
+    __tcfapi?: (
+      command: string,
+      version: number,
+      callback: Function,
+      parameter?: any
+    ) => void;
   }
 }
 
@@ -35,7 +40,7 @@ export default function GoogleCMP() {
         src={`https://fundingchoicesmessages.google.com/i/${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT_ID}?ers=1`}
         strategy="afterInteractive"
       />
-      
+
       {/* Google FC Present Script */}
       <Script
         id="google-fc-present"

@@ -6,6 +6,7 @@
  */
 
 import { InArticleAd, ResponsiveAd } from "@/components/AdComponents";
+import { SafeHtml } from "@/components/SafeHtml";
 
 // 型定義例
 interface ArticlePageProps {
@@ -40,7 +41,7 @@ export default async function ArticlePageExample({ params }: ArticlePageProps) {
         {/* ... */}
 
         <article className="prose max-w-none">
-          <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+          <SafeHtml htmlContent={htmlContent} />
         </article>
 
         {/* 記事下部の広告 */}

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 // JSXを使わずHTML文字列で描画するためLink, Imageは不要
 import { remark } from "remark";
 import html from "remark-html";
+import { SafeHtml } from "@/components/SafeHtml";
 
 export default async function OwnerBlogPost({
   params,
@@ -68,5 +69,5 @@ export default async function OwnerBlogPost({
     </main>
   `;
 
-  return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
+  return <SafeHtml htmlContent={htmlString} />;
 }

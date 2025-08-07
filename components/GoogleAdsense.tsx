@@ -25,13 +25,14 @@ export default function GoogleAdsense({
     const generalConsent = document.cookie
       .split("; ")
       .find((row) => row.startsWith("neiby_cookie_consent="));
-    
+
     const advertisingConsentCookie = document.cookie
       .split("; ")
       .find((row) => row.startsWith("neiby_consent_advertising="));
 
-    const hasGeneralConsent = generalConsent && generalConsent.split("=")[1] === "true";
-    const hasAdvertisingConsent = advertisingConsentCookie 
+    const hasGeneralConsent =
+      generalConsent && generalConsent.split("=")[1] === "true";
+    const hasAdvertisingConsent = advertisingConsentCookie
       ? advertisingConsentCookie.split("=")[1] === "true"
       : hasGeneralConsent; // フォールバック
 
@@ -49,14 +50,16 @@ export default function GoogleAdsense({
         console.error("AdSense error:", error);
       }
     }
-  }, []);  // 広告Cookie同意がない場合は何も表示しない
+  }, []); // 広告Cookie同意がない場合は何も表示しない
   if (!advertisingConsent) {
     return (
-      <div className={`adsense-container ${className} text-center p-4 bg-gray-100 rounded`}>
+      <div
+        className={`adsense-container ${className} text-center p-4 bg-gray-100 rounded`}
+      >
         <p className="text-sm text-gray-600">
           広告を表示するには、
-          <button 
-            onClick={() => window.location.href = '/cookie-settings'}
+          <button
+            onClick={() => (window.location.href = "/cookie-settings")}
             className="text-blue-600 hover:underline mx-1"
           >
             Cookie設定

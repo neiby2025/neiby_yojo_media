@@ -46,20 +46,36 @@ export default function EnhancedCookieConsent() {
   };
 
   const savePreferences = () => {
-    updateConsent(preferences.analytics, preferences.advertising, preferences.personalization);
+    updateConsent(
+      preferences.analytics,
+      preferences.advertising,
+      preferences.personalization
+    );
     setShowBanner(false);
     setShowOptions(false);
   };
 
-  const updateConsent = (analytics: boolean, advertising: boolean, personalization: boolean) => {
+  const updateConsent = (
+    analytics: boolean,
+    advertising: boolean,
+    personalization: boolean
+  ) => {
     // Cookieの設定
     const hasAnyConsent = analytics || advertising;
-    document.cookie = `neiby_cookie_consent=${hasAnyConsent}; path=/; max-age=${365 * 24 * 60 * 60}`;
-    
+    document.cookie = `neiby_cookie_consent=${hasAnyConsent}; path=/; max-age=${
+      365 * 24 * 60 * 60
+    }`;
+
     // 詳細設定用Cookie
-    document.cookie = `neiby_consent_analytics=${analytics}; path=/; max-age=${365 * 24 * 60 * 60}`;
-    document.cookie = `neiby_consent_advertising=${advertising}; path=/; max-age=${365 * 24 * 60 * 60}`;
-    document.cookie = `neiby_consent_personalization=${personalization}; path=/; max-age=${365 * 24 * 60 * 60}`;
+    document.cookie = `neiby_consent_analytics=${analytics}; path=/; max-age=${
+      365 * 24 * 60 * 60
+    }`;
+    document.cookie = `neiby_consent_advertising=${advertising}; path=/; max-age=${
+      365 * 24 * 60 * 60
+    }`;
+    document.cookie = `neiby_consent_personalization=${personalization}; path=/; max-age=${
+      365 * 24 * 60 * 60
+    }`;
 
     // Google Consent Mode の更新
     if (typeof window !== "undefined" && window.gtag) {
@@ -95,7 +111,8 @@ export default function EnhancedCookieConsent() {
               </h2>
               <p className="text-gray-700 mb-4 text-sm leading-relaxed">
                 当サイトでは、サービスの向上、アクセス解析、および広告配信の最適化のためにCookieと類似技術を使用しています。
-                これには、パーソナライズされた広告の表示とGoogle AdSenseによる広告収益の向上が含まれます。
+                これには、パーソナライズされた広告の表示とGoogle
+                AdSenseによる広告収益の向上が含まれます。
               </p>
               <p className="text-gray-700 mb-6 text-sm">
                 詳細については、
@@ -104,7 +121,7 @@ export default function EnhancedCookieConsent() {
                 </Link>
                 をご確認ください。
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={acceptAll}
@@ -132,7 +149,7 @@ export default function EnhancedCookieConsent() {
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 Cookie設定の詳細
               </h2>
-              
+
               <div className="space-y-4 mb-6">
                 {/* 必須Cookie */}
                 <div className="border rounded-lg p-4">
@@ -157,7 +174,12 @@ export default function EnhancedCookieConsent() {
                     <input
                       type="checkbox"
                       checked={preferences.analytics}
-                      onChange={(e) => setPreferences({...preferences, analytics: e.target.checked})}
+                      onChange={(e) =>
+                        setPreferences({
+                          ...preferences,
+                          analytics: e.target.checked,
+                        })
+                      }
                       className="rounded"
                     />
                   </div>
@@ -173,7 +195,12 @@ export default function EnhancedCookieConsent() {
                     <input
                       type="checkbox"
                       checked={preferences.advertising}
-                      onChange={(e) => setPreferences({...preferences, advertising: e.target.checked})}
+                      onChange={(e) =>
+                        setPreferences({
+                          ...preferences,
+                          advertising: e.target.checked,
+                        })
+                      }
                       className="rounded"
                     />
                   </div>
@@ -185,11 +212,18 @@ export default function EnhancedCookieConsent() {
                 {/* パーソナライゼーションCookie */}
                 <div className="border rounded-lg p-4">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-semibold">パーソナライゼーションCookie</h3>
+                    <h3 className="font-semibold">
+                      パーソナライゼーションCookie
+                    </h3>
                     <input
                       type="checkbox"
                       checked={preferences.personalization}
-                      onChange={(e) => setPreferences({...preferences, personalization: e.target.checked})}
+                      onChange={(e) =>
+                        setPreferences({
+                          ...preferences,
+                          personalization: e.target.checked,
+                        })
+                      }
                       className="rounded"
                     />
                   </div>
