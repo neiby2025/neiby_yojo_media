@@ -6,6 +6,7 @@ import Header from "@/components/header";
 import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
 import CookieConsentBanner from "@/components/CookieConsent";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Neiby｜体質診断できる養生メディア",
@@ -48,6 +49,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      <head>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1468581508096237"
+          crossOrigin="anonymous"
+          strategy="beforeInteractive"
+        />
+      </head>
       <body className={GeistSans.className}>
         <Header />
         {children}
