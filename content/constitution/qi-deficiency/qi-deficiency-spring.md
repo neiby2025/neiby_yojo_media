@@ -5,8 +5,8 @@ category: "体質別養生"
 constitution: "気虚"
 tags: ["気虚", "春の養生", "疲労回復", "免疫力"]
 author: "Neiby編集部"
-publishedAt: "2025-07-15"
-updatedAt: "2025-08-06"
+publishedAt: "2025-04-15"
+updatedAt: "2025-07-06"
 image: "/images/constitution/qi-deficiency-spring.jpg"
 readingTime: 5
 featured: true
