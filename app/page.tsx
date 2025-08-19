@@ -18,9 +18,26 @@ import { ResponsiveAd } from "@/components/AdComponents";
 
 // typeをfrontmatterまたはファイル名から推測する関数
 function guessTypeFromFrontmatterOrSlug(data: any, slug: string): string {
+  // まずconstitutionフィールドをチェック
   if (data.constitution) {
-    // constitutionフィールドがあればそれを使う
     switch (data.constitution) {
+      case "気虚":
+        return "qi-deficiency";
+      case "血虚":
+        return "blood-deficiency";
+      case "気滞":
+        return "qi-stagnation";
+      case "瘀血":
+        return "blood-stasis";
+      case "水滞":
+        return "water-retention";
+      default:
+        return "other";
+    }
+  }
+  // 次にcategoryフィールドをチェック
+  if (data.category) {
+    switch (data.category) {
       case "気虚":
         return "qi-deficiency";
       case "血虚":

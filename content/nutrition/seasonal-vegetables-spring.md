@@ -4,8 +4,8 @@ description: "春野菜が持つ中医学的な「巡りを整える」効能と
 category: "食養生"
 tags: ["春野菜", "デトックス", "旬の食材", "栄養", "体質改善"]
 author: "Neiby編集部編集部"
-publishedAt: "2025-08-06"
-updatedAt: "2025-08-06"
+publishedAt: "2025-05-06"
+updatedAt: "2025-05-06"
 image: "/images/seasonal/seasonal-vegetables-spring.jpeg"
 readingTime: 7
 featured: false
