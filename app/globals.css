@@ -91,4 +91,74 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Blockquote styles for markdown content */
+  blockquote {
+    border-left: 4px solid rgb(96 165 250) !important; /* blue-400 */
+    background-color: rgb(239 246 255) !important; /* blue-50 */
+    padding: 1rem !important; /* 上下左右を統一 */
+    padding-left: 1.25rem !important; /* 左側のパディングを少し多めに */
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+    font-style: normal !important;
+    border-top-right-radius: 0.375rem !important;
+    border-bottom-right-radius: 0.375rem !important;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
+    font-weight: 500 !important;
+  }
+
+  blockquote p {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  blockquote a {
+    color: rgb(37 99 235) !important; /* blue-600 */
+    text-decoration: underline !important;
+    font-weight: 500 !important;
+  }
+
+  blockquote a:hover {
+    color: rgb(30 64 175) !important; /* blue-800 */
+  }
+
+  /* Special styling for product recommendation blockquotes - higher specificity */
+  .prose blockquote,
+  .prose-lg blockquote,
+  .prose-sm blockquote,
+  .prose-xl blockquote,
+  .prose-2xl blockquote {
+    border-left: 4px solid rgb(96 165 250) !important; /* blue-400 */
+    background-color: rgb(239 246 255) !important; /* blue-50 */
+    font-style: normal !important;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
+    font-weight: 500 !important;
+    padding: 1rem !important; /* 上下左右を統一 */
+    padding-left: 1.25rem !important; /* 左側のパディングを少し多めに */
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+    border-top-right-radius: 0.375rem !important;
+    border-bottom-right-radius: 0.375rem !important;
+  }
+
+  /* Proseクラス内のblockquote p要素の余白を削除 */
+  .prose blockquote p,
+  .prose-lg blockquote p,
+  .prose-sm blockquote p,
+  .prose-xl blockquote p,
+  .prose-2xl blockquote p {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .dark .prose blockquote,
+  .dark .prose-lg blockquote,
+  .dark .prose-sm blockquote,
+  .dark .prose-xl blockquote,
+  .dark .prose-2xl blockquote {
+    border-left-color: rgb(59 130 246 / 0.7) !important; /* blue-500/70 */
+    background-color: rgb(
+      30 58 138 / 0.2
+    ) !important; /* blue-900/20 - ダークモードでも薄めに */
+  }
 }

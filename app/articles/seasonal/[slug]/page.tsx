@@ -4,8 +4,12 @@ import matter from "gray-matter";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Calendar } from "lucide-react";
-import { remark } from "remark";
-import html from "remark-html";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import rehypeRaw from "rehype-raw";
+import rehypeExternalLinks from "rehype-external-links";
+import rehypeStringify from "rehype-stringify";
 import { SafeHtml } from "@/components/SafeHtml";
 
 export default async function SeasonalArticlePage({
@@ -24,9 +28,18 @@ export default async function SeasonalArticlePage({
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
 
-  // Markdownを適切に処理
-  const processedContent = await remark().use(html).process(content);
-  const htmlContent = processedContent.toString();
+  // Markdownを処理して外部リンクを別タブで開くように設定
+  const processed = await unified()
+    .use(remarkParse)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+    .use(rehypeExternalLinks, {
+      target: "_blank",
+      rel: ["noopener", "noreferrer"],
+    })
+    .use(rehypeStringify)
+    .process(content);
+  const htmlContent = processed.toString();
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-50 via-indigo-50 to-slate-100 py-10 px-4">

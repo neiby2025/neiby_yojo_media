@@ -22,8 +22,20 @@ export function SafeHtml({ htmlContent, className }: SafeHtmlProps) {
       "ol",
       "li",
       "a",
+      "blockquote",
+      "div",
+      "span",
+      "img",
+      "table",
+      "thead",
+      "tbody",
+      "tr",
+      "th",
+      "td",
+      "code",
+      "pre",
     ],
-    ALLOWED_ATTR: ["href", "target", "rel"],
+    ALLOWED_ATTR: ["href", "target", "rel", "src", "alt", "class", "style"],
   });
 
   return (
