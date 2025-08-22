@@ -6,6 +6,12 @@ import Image from "next/image";
 import { Calendar } from "lucide-react";
 import { remark } from "remark";
 import html from "remark-html";
+import rehypeRaw from "rehype-raw";
+import rehypeExternalLinks from "rehype-external-links";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import rehypeStringify from "rehype-stringify";
 import { SafeHtml } from "@/components/SafeHtml";
 
 interface ArticlePageProps {
@@ -24,7 +30,18 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   if (!fs.existsSync(filePath)) return notFound();
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
-  const processed = await remark().use(html).process(content);
+
+  // Markdownを処理して外部リンクを別タブで開くように設定
+  const processed = await unified()
+    .use(remarkParse)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+    .use(rehypeExternalLinks, {
+      target: "_blank",
+      rel: ["noopener", "noreferrer"],
+    })
+    .use(rehypeStringify)
+    .process(content);
   const htmlContent = processed.toString();
 
   // 日付フォーマット
