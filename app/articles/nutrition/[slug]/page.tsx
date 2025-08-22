@@ -70,7 +70,7 @@ export default async function NutritionArticlePage({
           </div>
         )}
         <article
-          className="prose max-w-none text-gray-900 leading-relaxed tracking-wide prose-headings:font-bold prose-headings:text-gray-800 prose-h1:mb-6 prose-h2:mb-4 prose-h3:mb-2 prose-p:mb-4 prose-img:rounded-lg prose-img:shadow-sm prose-img:my-6 prose-blockquote:border-l-4 prose-blockquote:border-blue-200 prose-blockquote:bg-blue-50 prose-blockquote:p-4 prose-blockquote:rounded-md prose-li:mb-2 prose-li:marker:text-blue-400 prose-a:text-blue-700 prose-a:underline hover:prose-a:text-blue-900 prose-strong:text-gray-900 prose-table:rounded-lg prose-table:overflow-hidden prose-table:bg-gray-50 prose-th:bg-gray-100 prose-th:p-2 prose-td:p-2 prose-code:bg-gray-100 prose-code:px-1 prose-code:rounded text-sm md:text-base"
+          className="prose max-w-none text-gray-900 leading-relaxed tracking-wide prose-headings:font-bold prose-headings:text-gray-800 prose-h1:mb-6 prose-h2:mb-4 prose-h3:mb-2 prose-p:mb-4 prose-img:rounded-lg prose-img:shadow-sm prose-img:my-6 prose-blockquote:border-l-4 prose-blockquote:border-blue-400 prose-blockquote:bg-blue-100 prose-blockquote:p-4 prose-blockquote:rounded-md prose-blockquote:shadow-sm prose-blockquote:font-medium prose-li:mb-2 prose-li:marker:text-blue-400 prose-a:text-blue-700 prose-a:underline hover:prose-a:text-blue-900 prose-strong:text-gray-900 prose-em:text-gray-500 prose-em:text-xs prose-table:rounded-lg prose-table:overflow-hidden prose-table:bg-gray-50 prose-th:bg-gray-100 prose-th:p-2 prose-td:p-2 prose-code:bg-gray-100 prose-code:px-1 prose-code:rounded text-sm md:text-base"
           style={{ wordBreak: "break-word" }}
         >
           <SafeHtml htmlContent={htmlContent} />
